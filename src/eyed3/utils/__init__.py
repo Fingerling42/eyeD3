@@ -38,10 +38,10 @@ class MagicTypes(magic.Magic):
         if os.path.splitext(filename)[1] in ID3_MIME_TYPE_EXTENSIONS:
             return ID3_MIME_TYPE
         try:
-            return self.from_file(filename)
+            return self.from_buffer(filename)
         except UnicodeEncodeError:
             # https://github.com/ahupp/python-magic/pull/144
-            return self.from_file(filename.encode("utf-8", 'surrogateescape'))
+            return self.from_buffer(filename.encode("utf-8", 'surrogateescape'))
 
 
 _mime_types = MagicTypes()
